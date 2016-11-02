@@ -1,0 +1,13 @@
+
+juice_splash.png
+size: 35,35
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+assets/dot
+  rotate: false
+  xy: 2, 2
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,216 @@
+
+confeti.png
+size: 1951,606
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+assets/apocalipse
+  rotate: false
+  xy: 2, 2
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/bell
+  rotate: false
+  xy: 2, 393
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/candy
+  rotate: false
+  xy: 193, 2
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/cat
+  rotate: false
+  xy: 384, 2
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/celt
+  rotate: false
+  xy: 575, 2
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/cloud
+  rotate: false
+  xy: 766, 2
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/coin
+  rotate: false
+  xy: 957, 2
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/conf
+  rotate: true
+  xy: 1601, 247
+  size: 179, 171
+  orig: 179, 171
+  offset: 0, 0
+  index: -1
+assets/cross
+  rotate: false
+  xy: 2, 180
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/dolar
+  rotate: true
+  xy: 1067, 415
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/flower
+  rotate: true
+  xy: 1067, 224
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/fmale
+  rotate: false
+  xy: 215, 393
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/gear
+  rotate: true
+  xy: 1148, 33
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/hart
+  rotate: true
+  xy: 1682, 67
+  size: 178, 163
+  orig: 178, 163
+  offset: 0, 0
+  index: -1
+assets/hippy
+  rotate: true
+  xy: 1245, 415
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/key
+  rotate: false
+  xy: 215, 180
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/lightning
+  rotate: false
+  xy: 428, 393
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/male
+  rotate: false
+  xy: 428, 180
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/mortal
+  rotate: false
+  xy: 1774, 258
+  size: 168, 168
+  orig: 168, 168
+  offset: 0, 0
+  index: -1
+assets/note
+  rotate: false
+  xy: 1847, 76
+  size: 102, 180
+  orig: 102, 180
+  offset: 0, 0
+  index: -1
+assets/pedlock
+  rotate: false
+  xy: 641, 393
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/plane
+  rotate: false
+  xy: 641, 180
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/questionmarc
+  rotate: false
+  xy: 854, 393
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/rad
+  rotate: true
+  xy: 1245, 224
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/recikle
+  rotate: false
+  xy: 854, 180
+  size: 211, 211
+  orig: 211, 211
+  offset: 0, 0
+  index: -1
+assets/scull
+  rotate: true
+  xy: 1326, 33
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/snoweflake
+  rotate: true
+  xy: 1423, 415
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/sun
+  rotate: true
+  xy: 1423, 224
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/tox
+  rotate: true
+  xy: 1504, 33
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
+assets/wifi
+  rotate: false
+  xy: 1601, 428
+  size: 189, 176
+  orig: 189, 176
+  offset: 0, 0
+  index: -1
