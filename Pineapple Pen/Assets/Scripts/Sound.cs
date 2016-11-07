@@ -10,11 +10,17 @@ public class Sound : MonoBehaviour {
     private int temp;
 
     private AudioSource audio;
-    public AudioClip ppap, trigger, gameOver, click, intro;
+    public AudioClip ppap, trigger, gameOver, click, intro, coinsSplash5;
 
     private bool onePpap;       //Tránh lặp audio
 
     public static Sound Instance { get; private set; }
+
+    //Âm thanh va chạm với swag
+    public void SoundCoinsSplash5()
+    {
+        audio.PlayOneShot(coinsSplash5);
+    }
 
     //Âm thanh click button
     public void SoundClick()

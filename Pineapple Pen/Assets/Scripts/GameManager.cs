@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public Emotion[] emotions;          //Mảng các loại emotion
     private int totalEmotion;           //Tổng số các loại emotion trong mảng emotions
 
+    public CoinMotion coinMotion;
+    public GameObject valueScoreOrCoin;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -90,7 +93,6 @@ public class GameManager : MonoBehaviour
     private void Trigger(Pen pen, Fruit fruit)
     {
         Dead(pen, fruit);                   //Xử lý pen và fruit
-        Score.Instance.SetScore(1);         //Xử lý điểm số
         Sound.Instance.SoundStop();         //Tắt audio
         Sound.Instance.SoundTrigger();      //Phát âm thanh va chạm
         Score.Instance.PlaySoundPpap();
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviour
         Score.Instance.StopSoundPpap();
         Sound.Instance.SoundStop();                         //Tắt audio
         Sound.Instance.SoundGameOver();                     //Phát âm thanh gameover
-
+        Coin.Instance.SaveCoin();
 
         penLive = false;                                    //Ngừng di chuyển pen
     }
@@ -133,9 +135,10 @@ public class GameManager : MonoBehaviour
             int temp = Random.Range(0, 4);  //Tỉ lệ xuất hiện
             if (temp == 0)
             {
-                fruits[fruitCount] = Instantiate(fruitsSpawn[Random.Range(2, totalFruit)]); //0: random swagapple hoặc swagpineapple
-                doubleKill[fruitCount] = 0;
-                species[fruitCount] = 2;
+                int temp1 = Random.Range(2, 4);
+                fruits[fruitCount] = Instantiate(fruitsSpawn[temp1]); //0: random swagapple hoặc swagpineapple
+                doubleKill[fruitCount] = Random.Range(0, 2);
+                species[fruitCount] = temp1;
             }
             else
             {
@@ -255,19 +258,58 @@ public class GameManager : MonoBehaviour
         else if(doubleKill[fruitCount] == 1)
         {
             //Nếu là loại 0 (Apple)
-            if(species[fruitCount] == 0)
+            if(species[fruitCount] == 0 || species[fruitCount] == 2)
             {
                 SpawnImageApple();          //Tạo emotion apple
             }
             //Ngược lại nếu loại 1 (PineApple)
-            else if (species[fruitCount] == 1)
+            else if (species[fruitCount] == 1 || species[fruitCount] == 3)
             {
                 SpawnImagePineApple();      //Tạo emotion pineapple
             }
-            //Ngược lại (loại swag)
+        }
+
+        if (species[fruitCount] == 2 || species[fruitCount] == 3)
+        {
+            if (doubleKill[fruitCount] == 1)
+            {
+                CoinMotion coin1 = (CoinMotion)Instantiate(coinMotion, new Vector3(fruits[fruitCount].transform.position.x, fruits[fruitCount].transform.position.y, 0), fruits[fruitCount].transform.rotation);
+                CoinMotion coin2 = (CoinMotion)Instantiate(coinMotion, new Vector3(fruits[fruitCount].transform.position.x + 1, fruits[fruitCount].transform.position.y + 0.2f, 0), fruits[fruitCount].transform.rotation);
+                CoinMotion coin3 = (CoinMotion)Instantiate(coinMotion, new Vector3(fruits[fruitCount].transform.position.x + 1, fruits[fruitCount].transform.position.y + 1, 0), fruits[fruitCount].transform.rotation);
+                CoinMotion coin4 = (CoinMotion)Instantiate(coinMotion, new Vector3(fruits[fruitCount].transform.position.x + 0.2f, fruits[fruitCount].transform.position.y + 1, 0), fruits[fruitCount].transform.rotation);
+            }
             else
             {
+                CoinMotion coin1 = (CoinMotion)Instantiate(coinMotion, new Vector3(fruits[fruitCount].transform.position.x, fruits[fruitCount].transform.position.y, 0), fruits[fruitCount].transform.rotation);
+                CoinMotion coin4 = (CoinMotion)Instantiate(coinMotion, new Vector3(fruits[fruitCount].transform.position.x + 0.2f, fruits[fruitCount].transform.position.y + 1, 0), fruits[fruitCount].transform.rotation);
+            }
+            Sound.Instance.SoundCoinsSplash5();
+        }
 
+
+        if(doubleKill[fruitCount] == 1)
+        {
+            GameObject value = (GameObject)Instantiate(valueScoreOrCoin, fruits[fruitCount].transform.position, fruits[fruitCount].transform.rotation);
+            value.GetComponent<Text>().text = "+2";
+            value.transform.SetParent(GameObject.Find("Canvas").transform);
+            value.transform.localScale = new Vector3(1, 1, 1);
+            Score.Instance.SetScore(2);
+            if (species[fruitCount] == 2 || species[fruitCount] == 3)
+            {
+                Coin.Instance.SetCoin(2);
+            }
+        }
+
+        if (doubleKill[fruitCount] == 0)
+        {
+            GameObject value = (GameObject)Instantiate(valueScoreOrCoin, fruits[fruitCount].transform.position, fruits[fruitCount].transform.rotation);
+            value.GetComponent<Text>().text = "+1";
+            value.transform.SetParent(GameObject.Find("Canvas").transform);
+            value.transform.localScale = new Vector3(1, 1, 1);
+            Score.Instance.SetScore(1);
+            if (species[fruitCount] == 2 || species[fruitCount] == 3)
+            {
+                Coin.Instance.SetCoin(1);
             }
         }
     }

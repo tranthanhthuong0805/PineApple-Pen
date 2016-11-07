@@ -14,7 +14,6 @@ public class Coin : MonoBehaviour
         Instance = this;
         coin = PlayerPrefs.GetInt("Coin");
         text = GetComponent<Text>();
-        coin = 300;
     }
 
     public static Coin Instance { get; private set; }

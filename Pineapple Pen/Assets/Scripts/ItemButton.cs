@@ -45,7 +45,6 @@ public class ItemButton : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         namePen = transform.GetChild(0).name;
-        print(PlayerPrefs.GetInt(this.name));
         noLockedPen = PlayerPrefs.GetInt(this.name);
         if (this.name == "Button1" && noLockedPen == 0)
         {
