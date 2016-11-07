@@ -26,6 +26,12 @@ public class ShopButton : MonoBehaviour {
 
     public void LiveShopButton()
     {
+        StartCoroutine(LoadShop(0.1f));
+    }
+
+    IEnumerator LoadShop(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         liveShop = true;
     }
 

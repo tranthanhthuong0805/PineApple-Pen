@@ -21,10 +21,15 @@ public class Pen : MonoBehaviour {
     }
     private bool saveY;
 
+    private Animator anim;
     // Use this for initialization
     void Awake()
     {
+        
         penSpeed = 40;
+        anim = GetComponent<Animator>();
+        Shop.pen = PlayerPrefs.GetString("Pen");
+        anim.SetTrigger(Shop.pen);
     }
 
     public void PenMove()

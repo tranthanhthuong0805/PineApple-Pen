@@ -6,14 +6,12 @@ public class Score : MonoBehaviour {
 
     public static int highScore;
     public static int score;
-    public static int coin;
     Text text;
 
 	// Use this for initialization
 	void Awake () {
         Instance = this;
         score = 0;
-        coin = 0;
         highScore = PlayerPrefs.GetInt("highScore");
         text = GetComponent<Text>();
 	}
@@ -32,6 +30,26 @@ public class Score : MonoBehaviour {
             highScore = score;
             PlayerPrefs.SetInt("highScore", highScore);
         }
+    }
+
+    public void PlaySoundPpap()
+    {
+        GetComponent<AudioSource>().mute = false;
+    }
+
+    public void StopSoundPpap()
+    {
+        GetComponent<AudioSource>().mute = true;
+    }
+
+    public void MinVolumePpap()
+    {
+        GetComponent<AudioSource>().volume = 0;
+    }
+
+    public void MaxVolumePpap()
+    {
+        GetComponent<AudioSource>().volume = 1;
     }
 	
 	// Update is called once per frame

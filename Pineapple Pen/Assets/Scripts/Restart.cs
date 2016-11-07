@@ -7,6 +7,12 @@ public class Restart : MonoBehaviour {
 
     public void RestartButton()
     {
+        StartCoroutine(LoadGamePlay(0.1f));
+    }
+
+    IEnumerator LoadGamePlay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         liveRestart = true;
     }
 

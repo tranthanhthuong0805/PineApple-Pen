@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private Fruit[] fruits;             //Mảng fruits
     private int fruitCount;             //Số phần tử trong mảng fruits
 
-
     public Pen[] pensSpawn;             //Mảng các loại pen có thể sinh
     private int totalPen;               //Tổng số các loại pen trong mảng pensSpawn
 
@@ -21,9 +20,6 @@ public class GameManager : MonoBehaviour
     private int penCount;               //Số phần tử trong mảng pens
     
     private bool penLive;               //Sử dụng cho PlayButton (Click button thì penLive = true)
-
-    private AudioSource audio;          //audio phát âm thanh
-    private Sound sound;                //Class Sound lưu các âm thanh
 
     private int[] doubleKill;           //Lưu giá trị random để show emotion (0: không show, 1: show)
     private int[] species;              //Lưu loại fruit (apple, pineapple, swag)
@@ -50,17 +46,8 @@ public class GameManager : MonoBehaviour
         SpawnPen();                         //Tạo pen
 	}
 
-    void Awake()
-    {
-        //Sử dụng AudioSource
-        audio = GetComponent<AudioSource>();
-        sound = GameObject.Find("SoundButton").GetComponent<Sound>();
-
-        
-    }
-
     public void PenButton()
-    {
+    {   
         penLive = true;
     }
 	
@@ -95,6 +82,8 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        
 	}
 
     //Xử lý pen và fruit va chạm
@@ -102,8 +91,9 @@ public class GameManager : MonoBehaviour
     {
         Dead(pen, fruit);                   //Xử lý pen và fruit
         Score.Instance.SetScore(1);         //Xử lý điểm số
-        audio.Stop();                       //Tắt audio
-        audio.PlayOneShot(sound.Trigger);   //Phát âm thanh va chạm
+        Sound.Instance.SoundStop();         //Tắt audio
+        Sound.Instance.SoundTrigger();      //Phát âm thanh va chạm
+        Score.Instance.PlaySoundPpap();
         SpawnImage();                       //Xử lý show ảnh guy_emotion
 
         Spawn();                            //Xử lý sinh
@@ -117,7 +107,10 @@ public class GameManager : MonoBehaviour
         ShowButton();                                       //Hiện các button
         ShowScore();                                        //Hiện điểm
         Destroy(pen.gameObject);                            //Xóa pen
-        audio.PlayOneShot(sound.GameOver);                  //Phát âm thanh gameover
+        Score.Instance.StopSoundPpap();
+        Sound.Instance.SoundStop();                         //Tắt audio
+        Sound.Instance.SoundGameOver();                     //Phát âm thanh gameover
+
 
         penLive = false;                                    //Ngừng di chuyển pen
     }

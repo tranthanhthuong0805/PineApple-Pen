@@ -7,60 +7,103 @@ public class Sound : MonoBehaviour {
     public Sprite sound1;
     public Sprite sound2;
     public Sprite sound3;
-    private int temp = 1;
+    private int temp;
 
     private AudioSource audio;
-    public AudioClip ppap, trigger, gameOver;
-    public AudioClip Trigger
-    {
-        get { return trigger; }
-        set { trigger = value; }
-    }
-    public AudioClip GameOver
-    {
-        get { return gameOver; }
-        set { gameOver = value; }
-    }
+    public AudioClip ppap, trigger, gameOver, click, intro;
 
     private bool onePpap;       //Tránh lặp audio
+
+    public static Sound Instance { get; private set; }
+
+    //Âm thanh click button
+    public void SoundClick()
+    {
+        audio.PlayOneShot(click);
+    }
+
+    //Âm thanh va chạm
+    public void SoundTrigger()
+    {
+        audio.PlayOneShot(trigger);
+    }
+
+    //Âm thanh gameover
+    public void SoundGameOver()
+    {
+        audio.PlayOneShot(gameOver);
+    }
+
+    public void SoundStop()
+    {
+        audio.Stop();
+    }
 
     //Đổi sprite
     public void SoundButton()
     {
-        if (temp == 3)
+        temp++;
+        if (temp == 4)
             temp = 1;
-        else
-            temp++;
+        PlayerPrefs.SetInt("Sound", temp);
+        SoundClick();
     }
 
 	// Use this for initialization
 	void Awake () {
+        Instance = this;
         audio = GetComponent<AudioSource>();
-        audio.clip = ppap;
 	}
+
+    void Start()
+    {
+        temp = PlayerPrefs.GetInt("Sound");
+        if(temp != 3)
+        {
+            audio.PlayOneShot(intro);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        GameObject[] emotions = GameObject.FindGameObjectsWithTag("Emotion");
         if (temp == 1)
         {
             this.transform.GetComponent<Image>().sprite = sound1;
+            if (emotions.Length != 0)
+            {
+                for (int i = 0; i < emotions.Length; i++)
+                {
+                    emotions[i].GetComponent<AudioSource>().volume = 1;
+                }
+            }
+            audio.volume = 1;
+            Score.Instance.MaxVolumePpap();
         }
         else if (temp == 2)
-            this.transform.GetComponent<Image>().sprite = sound2;
-        else if (temp == 3)
-            this.transform.GetComponent<Image>().sprite = sound3;
-
-        if (Score.score > 0)
         {
-            GameObject pen = GameObject.FindGameObjectWithTag("Pen");
 
-            if (onePpap == false && !audio.isPlaying)
-                audio.PlayOneShot(ppap);
-            if (onePpap == false && audio.isPlaying)
-                onePpap = true;
-            if (pen == null)
-                audio.Stop();
-
+            this.transform.GetComponent<Image>().sprite = sound2;
+            if (emotions.Length != 0)
+            {
+                for (int i = 0; i < emotions.Length; i++)
+                {
+                    emotions[i].GetComponent<AudioSource>().volume = 0;
+                }
+            }
+        }
+        else if (temp == 3)
+        {
+            this.transform.GetComponent<Image>().sprite = sound3;
+            if (emotions.Length != 0)
+            {
+                for (int i = 0; i < emotions.Length; i++)
+                {
+                    emotions[i].GetComponent<AudioSource>().volume = 0;
+                }
+            }
+            audio.volume = 0;
+            Score.Instance.MinVolumePpap();
         }
 	}
 }
